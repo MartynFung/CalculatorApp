@@ -7,7 +7,7 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Please enter two numbers delimited by a comma:");
+            Console.WriteLine("Please enter a series of numbers delimited by commas:");
 
             string input = Console.ReadLine();
 
