@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CalculatorLibrary;
+using System;
 
 namespace ConsoleUI
 {
@@ -6,7 +7,21 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Please enter two numbers delimited by a comma:");
+
+            string input = Console.ReadLine();
+
+            try
+            {
+                int result = Calculator.CalculateInput(input);
+                Console.WriteLine($"result: {result}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.ReadLine();
         }
     }
 }
