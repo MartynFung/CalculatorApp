@@ -10,15 +10,14 @@ namespace CalculatorLibrary
         {
             int result = 0;
 
-            // Validate input
             if (String.IsNullOrEmpty(input))
             {
                 return 0;
             }
 
-            string[] numbers = input.Split(",", StringSplitOptions.RemoveEmptyEntries);
+            string[] formattedInput = FormatInput(input);
 
-            IEnumerable<int> integers = ToIntArray(numbers);
+            IEnumerable<int> integers = ToIntArray(formattedInput);
 
             result = Add(integers);
 
@@ -46,6 +45,13 @@ namespace CalculatorLibrary
                 }
             }
             return list;
+        }
+
+        public static string[] FormatInput(string input)
+        {
+            string[] separators = { ",", "\n", "\\n" };
+            string[] splitInput = input.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+            return splitInput;
         }
 
     }
