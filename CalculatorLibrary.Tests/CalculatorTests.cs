@@ -21,5 +21,14 @@ namespace CalculatorLibrary.Tests
 
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("1,2,3,4,5,6,7,8,9,10,11,12", 78)]
+        public void CalculateInput_CanAddMoreThanTwoNumbers(string numbers, int expected)
+        {
+            int actual = Calculator.CalculateInput(numbers);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }

@@ -18,12 +18,6 @@ namespace CalculatorLibrary
 
             string[] numbers = input.Split(",", StringSplitOptions.RemoveEmptyEntries);
 
-            // Validate amount of numbers
-            if (numbers.Length > 2)
-            {
-                throw new ArgumentOutOfRangeException("input", $"Please enter only two numbers.");
-            }
-
             IEnumerable<int> integers = ToIntArray(numbers);
 
             result = Add(integers);
