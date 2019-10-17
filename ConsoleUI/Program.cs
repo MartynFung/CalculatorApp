@@ -9,6 +9,7 @@ namespace ConsoleUI
         {
             Console.WriteLine("Please enter a series of numbers delimited by commas or newline characters :");
 
+            // Capture user input
             string input = Console.ReadLine();
 
             try
@@ -18,7 +19,7 @@ namespace ConsoleUI
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine($"Error: {ex.Message}");
             }
 
             Console.ReadLine();

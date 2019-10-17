@@ -8,20 +8,26 @@ namespace CalculatorLibrary
     {
         public static int CalculateInput(string input)
         {
-            int result = 0;
+            int output = 0;
 
+            // Convert empty input to 0
             if (String.IsNullOrEmpty(input))
             {
                 return 0;
             }
 
+            // Split array by delimiters
             string[] formattedInput = FormatInput(input);
 
+            // Convert to integer array
             IEnumerable<int> integers = ToIntArray(formattedInput);
 
-            result = Add(integers);
+            // Check for negative numbers
+            ValidateNumbers(integers);
 
-            return result;
+            output = Add(integers);
+
+            return output;
         }
 
         public static int Add(IEnumerable<int> numbers)
@@ -31,27 +37,41 @@ namespace CalculatorLibrary
 
         public static IEnumerable<int> ToIntArray(string[] numbers)
         {
-            List<int> list = new List<int>();
+            List<int> output = new List<int>();
             foreach (string str in numbers)
             {
-                int num;
-                if (int.TryParse(str, out num))
+                if (int.TryParse(str, out int num))
                 {
-                    list.Add(num);
+                    output.Add(num);
                 }
                 else
                 {
-                    list.Add(0);
+                    output.Add(0);
                 }
             }
-            return list;
+            return output;
         }
 
         public static string[] FormatInput(string input)
         {
             string[] separators = { ",", "\n", "\\n" };
-            string[] splitInput = input.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-            return splitInput;
+            string[] output = input.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+            return output;
+        }
+
+        public static void ValidateNumbers(IEnumerable<int> numbers)
+        {
+            // Extract negative numbers
+            IEnumerable<int> negativeNumbers = numbers.Where(i => i < 0);
+
+            if (negativeNumbers.Any())
+            {
+                throw new NegativeNumbersInvalidException(negativeNumbers);
+            }
+            foreach (var neg in negativeNumbers)
+            {
+                Console.WriteLine(neg);
+            }
         }
 
     }
