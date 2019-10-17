@@ -40,7 +40,7 @@ namespace CalculatorLibrary
             List<int> output = new List<int>();
             foreach (string str in numbers)
             {
-                if (int.TryParse(str, out int num))
+                if (int.TryParse(str, out int num) && num <= 1000)
                 {
                     output.Add(num);
                 }

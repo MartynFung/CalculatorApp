@@ -10,7 +10,7 @@ namespace CalculatorLibrary.Tests
     {
         [Theory]
         [InlineData("20", 20)]
-        [InlineData("1,5000", 5001)]
+        [InlineData("1,500", 501)]
         [InlineData("", 0)]
         [InlineData(null, 0)]
         [InlineData("5,tytyt", 5)]
@@ -56,6 +56,18 @@ namespace CalculatorLibrary.Tests
 
             // Assert
             Assert.Equal("Numbers cannot be negative: -1, -2", exception.Message);
+        }
+
+        [Theory]
+        [InlineData("2,1001,6", 8)]
+        [InlineData("1,5000", 1)]
+        public void CalculateInput_AddIgnoresNumbersOver1000(string input, int expected)
+        {
+            // Act
+            int actual = Calculator.CalculateInput(input);
+
+            // Assert
+            Assert.Equal(expected, actual);
         }
 
     }
