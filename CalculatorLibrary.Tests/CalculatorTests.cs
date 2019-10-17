@@ -83,5 +83,16 @@ namespace CalculatorLibrary.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData("//[***]\n11***22***33", 66)]
+        [InlineData("//[$$]\n11$$22", 33)]
+        public void CalculateInput_AddSupportsAnyLengthCustomDelimiter(string input, int expected)
+        {
+            // Act
+            int actual = Calculator.CalculateInput(input);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
     }
 }

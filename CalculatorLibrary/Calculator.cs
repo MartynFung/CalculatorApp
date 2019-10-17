@@ -56,18 +56,40 @@ namespace CalculatorLibrary
         public static string[] FormatInput(string input)
         {
             List<string> separators = new List<string> { ",", "\n" };
+            string numbersRegion = input;
 
-            // Get custom delimiter
-            if (input.StartsWith("//"))
+            // Check for delimiter region
+            if (input.StartsWith("//") && input.IndexOf("\n") >= 3)
             {
-                string delimiter = input.Split("\n").First().Substring(2);
-                if (delimiter.Length == 1)
+                int newlineIndex = input.IndexOf("\n");
+
+                // Get delimiter region
+                string delimiterRegion = input.Substring(2, newlineIndex - 2);
+
+                // Get numbers region
+                numbersRegion = input.Substring(newlineIndex + 1);
+
+                if (delimiterRegion.Length == 1)
                 {
-                    separators.Add(delimiter);
+                    separators.Add(delimiterRegion);
+                }
+                else
+                {
+                    // Find all delimiters within square brackets []
+                    var delimiterMatches = Regex.Matches(delimiterRegion, @"\[(.*?)\]")
+                        .Cast<Match>()
+                        .Select(m => new
+                        {
+                            delimiter = m.Groups[1].Value
+                        })
+                        .ToList();
+
+                    // Add only first custom delimiter
+                    separators.Add(delimiterMatches.First().delimiter);
                 }
             }
 
-            string[] output = input.Split(separators.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+            string[] output = numbersRegion.Split(separators.ToArray(), StringSplitOptions.RemoveEmptyEntries);
             return output;
         }
 
