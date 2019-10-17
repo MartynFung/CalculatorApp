@@ -14,9 +14,8 @@ namespace ConsoleUI
 
             try
             {
-
                 int result = Calculator.CalculateInput(input);
-                Console.WriteLine($"result: {result}");
+                Console.WriteLine(result);
             }
             catch (Exception ex)
             {

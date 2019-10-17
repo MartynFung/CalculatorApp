@@ -33,6 +33,8 @@ namespace CalculatorLibrary
 
         public static int Add(IEnumerable<int> numbers)
         {
+            string formula = string.Join("+", numbers);
+            Console.WriteLine($"{formula} = ");
             return numbers.Sum();
         }
 
