@@ -93,7 +93,7 @@ namespace CalculatorLibrary
                 }
             }
 
-            string[] output = numbersRegion.Split(separators.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+            string[] output = numbersRegion.Split(separators.ToArray(), StringSplitOptions.None);
             return output;
         }
 
