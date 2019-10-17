@@ -9,11 +9,12 @@ namespace ConsoleUI
         {
             Console.WriteLine("Please enter a series of numbers delimited by commas or newline characters :");
 
-            // Capture user input
-            string input = Console.ReadLine();
+            // Capture user input. Handle newline character when entered in console.
+            string input = Console.ReadLine().Replace("\\n", "\n");
 
             try
             {
+
                 int result = Calculator.CalculateInput(input);
                 Console.WriteLine($"result: {result}");
             }

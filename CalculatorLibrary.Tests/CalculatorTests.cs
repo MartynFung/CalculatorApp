@@ -70,5 +70,18 @@ namespace CalculatorLibrary.Tests
             Assert.Equal(expected, actual);
         }
 
+
+        [Theory]
+        [InlineData("//#\n2#5", 7)]
+        [InlineData("//,\n2,ff,100", 102)]
+        public void CalculateInput_AddSupportsSingleCharCustomDelimiter(string input, int expected)
+        {
+            // Act
+            int actual = Calculator.CalculateInput(input);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
     }
 }

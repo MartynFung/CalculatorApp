@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CalculatorLibrary
 {
@@ -54,8 +55,19 @@ namespace CalculatorLibrary
 
         public static string[] FormatInput(string input)
         {
-            string[] separators = { ",", "\n", "\\n" };
-            string[] output = input.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+            List<string> separators = new List<string> { ",", "\n" };
+
+            // Get custom delimiter
+            if (input.StartsWith("//"))
+            {
+                string delimiter = input.Split("\n").First().Substring(2);
+                if (delimiter.Length == 1)
+                {
+                    separators.Add(delimiter);
+                }
+            }
+
+            string[] output = input.Split(separators.ToArray(), StringSplitOptions.RemoveEmptyEntries);
             return output;
         }
 
