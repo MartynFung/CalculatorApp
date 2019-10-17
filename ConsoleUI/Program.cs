@@ -7,7 +7,7 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Please enter a series of numbers delimited by commas or newline characters :");
+            Console.WriteLine("Please enter a series of numbers delimited by commas or newline characters:");
 
             // Capture user input. Handle newline character when entered in console.
             string input = Console.ReadLine().Replace("\\n", "\n");

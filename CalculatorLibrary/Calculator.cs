@@ -84,8 +84,10 @@ namespace CalculatorLibrary
                         })
                         .ToList();
 
-                    // Add only first custom delimiter
-                    separators.Add(delimiterMatches.First().delimiter);
+                    foreach (var delim in delimiterMatches)
+                    {
+                        separators.Add(delim.delimiter);
+                    }
                 }
             }
 

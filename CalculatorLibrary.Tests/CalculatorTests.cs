@@ -94,5 +94,17 @@ namespace CalculatorLibrary.Tests
             // Assert
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("//[*][!!][r9r]\n11r9r22*hh*33!!44", 110)]
+        [InlineData("//[_][@@][))]\n11_22@@hh@@33))55", 121)]
+        public void CalculateInput_AddSupportsMultipleAnyLengthCustomDelimiter(string input, int expected)
+        {
+            // Act
+            int actual = Calculator.CalculateInput(input);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
     }
 }
